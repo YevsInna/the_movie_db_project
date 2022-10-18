@@ -1,11 +1,10 @@
 import {Route, Routes} from "react-router-dom";
 
 import {MoviesPage} from "./pages/MoviesPage/MoviesPage";
-import {MoviesList} from "./components/MoviesList/MoviesList";
 import {MoviesListCard} from "./components";
-import {Genres} from "./components/Genres/Genres";
 import {MainLayout} from "./layouts/MainLayouts/MainLayout";
 import {GenresPage} from "./pages/GenresPage/GenresPage";
+import React from "react";
 
 const App = () => {
 
@@ -14,8 +13,10 @@ const App = () => {
             <Routes>
                 <Route path={'/'} element={<MainLayout/>}>
                     <Route path='movies' element={<MoviesPage/>}>
-                        <Route path=':id' element={<MoviesListCard/>}/>
+
                     </Route>
+
+                    <Route path='movie/:id/info/' element={<MoviesListCard/>}/>
                     <Route path={'genres'} element={<GenresPage/>}/>
                 </Route>
             </Routes>

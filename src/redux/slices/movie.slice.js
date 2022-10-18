@@ -1,9 +1,23 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk} from "@reduxjs/toolkit";
+
+import {movieService} from "../../services";
 
 const initialState = {
     movies: [],
     movie: null
 };
+const getAll = createAsyncThunk(
+    'movieSlice/getAll',
+    async (_, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.getAll();
+            return data.results
+        } catch (e) {
+            return rejectWithValue(e.response.data)
+        }
+    }
+);
 
 const movieSlice = createSlice({
     name: 'movieSlice',
@@ -11,11 +25,13 @@ const movieSlice = createSlice({
     reducers: {},
     extraReducers: builder =>
         builder
-    // .addCase()
+    .addCase(getAll.fulfilled, (state, action)=>{
+        state.movies = action.payload
+    })
 });
 
-const {reducer: movieReducer, actions: {}} = movieSlice;
+const {reducer: movieReducer, actions:{}} = movieSlice;
 
-const movieAction = {};
+const movieAction = {getAll};
 
 export {movieAction, movieReducer};

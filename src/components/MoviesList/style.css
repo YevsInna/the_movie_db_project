@@ -1,0 +1,17 @@
+.card{
+    display: flex;
+    margin: 10px;
+    column-gap: 8px;
+    align-items: center;
+    width:700px;
+    background: #e5faf3;
+    box-shadow: rgba(118, 124, 130, 0.2) 0px 8px 24px;
+    border-radius: 10px;
+}
+.card img{
+    border-radius: 10px 0 0 10px;
+}
+.title{
+    margin-bottom: 20px;
+    font-size: 20px;
+}

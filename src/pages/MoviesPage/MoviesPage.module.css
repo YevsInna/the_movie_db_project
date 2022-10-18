@@ -1,0 +1,15 @@
+body{
+    background: #bfe5d8;
+}
+dark{
+    background: #0a3b2a;
+    color: #dffaf1;
+}
+
+.movie_list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    font-family: sans-serif;
+    }
