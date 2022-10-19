@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {movieService} from "../../services";
+import {movieAction} from "../../redux";
 
-const Genres = () => {
+const Genres = ({genre}) => {
+    const {id, name} = genre
+
     return (
         <div>
-            Genres list
+            <h3>{name}</h3>
         </div>
     );
 };

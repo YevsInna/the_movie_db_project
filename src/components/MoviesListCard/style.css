@@ -1,0 +1,41 @@
+.movie-card {
+    margin: 1rem;
+    text-align: center;
+   }
+
+.movie-overview {
+    display: flex;
+    gap: 100px;
+    justify-content: center;
+    margin-top: 1rem;
+
+}
+
+.movie-overview img {
+    border-radius: 10px;
+}
+
+.overview {
+    width: 500px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-overview p {
+    font-size: 24px;
+}
+.overview button {
+    border: none;
+    border-radius: 10px;
+    background-color: #6b7d73;
+    color: #d3f1e1;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+
+}
+
+.overview button:hover {
+    cursor: pointer;
+}

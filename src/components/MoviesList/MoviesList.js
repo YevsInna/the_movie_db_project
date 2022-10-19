@@ -13,7 +13,7 @@ const MoviesList = ({movie}) => {
                 <div className="title">{title}</div>
                 <div>release date - {release_date}</div>
                 <div> vote average - {vote_average}</div>
-                <Link to={`/movie/${id}/info`}>
+                <Link to={`/movie/${id}/info`} state={movie}>
                     <button>Details</button>
                 </Link>
             </div>

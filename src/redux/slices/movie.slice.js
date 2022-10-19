@@ -4,9 +4,13 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {movieService} from "../../services";
 
 const initialState = {
-    movies: [],
-    movie: null
-};
+        movies: [],
+        movie: null,
+        searchMovie: '',
+        currentPage: 1,
+        pages: 0
+    }
+;
 const getAll = createAsyncThunk(
     'movieSlice/getAll',
     async (_, {rejectWithValue}) => {
@@ -19,19 +23,44 @@ const getAll = createAsyncThunk(
     }
 );
 
+const searchMovie = createAsyncThunk(
+    'movieSlice/searchMovie',
+    async ({currentPage, searchMovie}, {rejectWithValue}) => {
+        try {
+            const {data} = await movieService.searchMovie(currentPage, searchMovie);
+            return data
+        } catch (e) {
+            return rejectWithValue(e.response.data)
+        }
+    }
+);
+
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
-    reducers: {},
+    reducers: {
+        madeSearchMovie: (state, action) => {
+            state.searchMovie = action.payload
+        },
+        setCurrentPage: (state, action) => {
+            state.currentPage = action.payload
+        }
+    },
     extraReducers: builder =>
         builder
-    .addCase(getAll.fulfilled, (state, action)=>{
-        state.movies = action.payload
-    })
+            .addCase(getAll.fulfilled, (state, action) => {
+                state.movies = action.payload
+
+            })
+            .addCase(searchMovie.fulfilled, (state, action) => {
+                state.movies = action.payload
+                state.pages = action.payload.total_pages
+            })
+
 });
 
-const {reducer: movieReducer, actions:{}} = movieSlice;
+const {reducer: movieReducer, actions: {madeSearchMovie, setCurrentPage}} = movieSlice;
 
-const movieAction = {getAll};
+const movieAction = {getAll, searchMovie, madeSearchMovie, setCurrentPage};
 
 export {movieAction, movieReducer};
