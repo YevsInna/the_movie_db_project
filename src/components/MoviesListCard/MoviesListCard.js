@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 import './style.css';
+import {useDispatch, useSelector} from "react-redux";
+import {genreService} from "../../services";
+import {genreAction} from "../../redux";
 
 const MoviesListCard = () => {
 
@@ -9,22 +12,33 @@ const MoviesListCard = () => {
     const {state} = useLocation();
     const [movie, setMovie] = useState({});
 
+
     useEffect(() => {
         if (state) {
             setMovie(state)
             return
         }
-    }, [id])
+    }, [id]);
+
     const navigate = useNavigate();
     const back = () => {
         navigate(-1)
-    }
+    };
+
+    // const {genres} = useSelector(state=>state.genres);
+    // const dispatch = useDispatch();
+    // useEffect(()=>{
+    //     genreService.getAllGenres().then(({data})=>{
+    //         dispatch(genreAction.getAllGenres(data.genres))
+    //     })
+    // },[]);
+
     return (
         <div>
             {
                 movie &&
                 <div className={'movie-card'}>
-                    <h1>{movie.title}</h1>
+                    <h5>{movie.title}</h5>
 
                     <div className={'movie-overview'}>
                         <img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt={movie.title}/>
@@ -36,7 +50,6 @@ const MoviesListCard = () => {
                             </div>
                             <button onClick={back}>Back to movies list</button>
                         </div>
-
                     </div>
                 </div>
             }

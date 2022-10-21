@@ -8,10 +8,10 @@ const MoviesList = ({movie}) => {
     const baseImageURL = "https://image.tmdb.org/t/p/"
     return (
         <div className="card">
-            <img src={`${baseImageURL}/w300/${backdrop_path}`} alt={title}/>
+            <img src={`${baseImageURL}/w300/${poster_path}`} alt={title}/>
             <div>
-                <div className="title">{title}</div>
-                <div>release date - {release_date}</div>
+                <h5 className="title">{title}</h5>
+
                 <div> vote average - {vote_average}</div>
                 <Link to={`/movie/${id}/info`} state={movie}>
                     <button>Details</button>

@@ -1,0 +1,14 @@
+.genre{
+    background:  #6b7d73;
+    color: #d3f1e1;
+    padding: 0.5rem 2rem;
+    font-size: 18px;
+    margin: 16px;
+    border-radius: 20px;
+    width: 150px;
+    text-align: center;
+}
+.genre a{
+    text-decoration: none;
+    color: #d3f1e1;
+}

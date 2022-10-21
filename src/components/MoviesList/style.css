@@ -1,27 +1,29 @@
-.card{
-    display: flex;
-    margin: 10px;
-    column-gap: 8px;
-    align-items: center;
-    width:700px;
+.card {
+    text-align: center;
     background: #e5faf3;
     box-shadow: rgba(118, 124, 130, 0.2) 0px 8px 24px;
     border-radius: 10px;
 }
-.card img{
-    border-radius: 10px 0 0 10px;
+
+.card img {
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+
 }
-.title{
+
+.title {
     margin-bottom: 20px;
     font-size: 20px;
 }
-.card button{
+
+.card button {
     border: none;
     border-radius: 10px;
     background-color: #6b7d73;
     color: #d3f1e1;
     padding: 0.5rem 1rem;
     font-size: 14px;
+    margin: 24px;
 }
 
 .card button:hover {

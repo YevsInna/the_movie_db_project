@@ -1,0 +1,38 @@
+body {
+    background: #bfe5d8;
+}
+
+dark {
+    background: #0a3b2a;
+    color: #dffaf1;
+}
+
+.container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    font-family: sans-serif;
+}
+
+.input {
+    border-radius: 5px;
+    border: none;
+    padding: 4px;
+
+}
+
+.form {
+    margin-bottom: 20px;
+    display: flex;
+}
+.form button{
+    border: none;
+    border-radius:5px;
+    background-color: #6b7d73;
+    color: #d3f1e1;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+}

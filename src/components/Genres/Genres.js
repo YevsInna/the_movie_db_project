@@ -1,14 +1,16 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {movieService} from "../../services";
-import {movieAction} from "../../redux";
+import React from 'react';
+
+import "./style.css"
+import {Link} from "react-router-dom";
 
 const Genres = ({genre}) => {
     const {id, name} = genre
 
     return (
         <div>
-            <h3>{name}</h3>
+            <div className={'genre'}>
+                <Link to={id.toString()}>{name}</Link>
+            </div>
         </div>
     );
 };

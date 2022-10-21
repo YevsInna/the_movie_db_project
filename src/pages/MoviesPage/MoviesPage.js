@@ -1,81 +1,63 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
+import {useSearchParams} from "react-router-dom";
 
 import {movieAction} from "../../redux";
 import {MoviesList} from "../../components";
-import css from './MoviesPage.module.css'
-import {useSearchParams} from "react-router-dom";
+import './style.css'
 import {movieService} from "../../services";
-
 
 const MoviesPage = () => {
 
-    const [movies, setMovies] = useState([]);
-    const [prev, setPrev] = useState(1);
-    const [next, setNext] = useState(1);
+    const dispatch = useDispatch();
+    const {movies} = useSelector(state => state.movies);
+    // const {searchMovies} = useSelector(state => state.movies);
     const [query, setQuery] = useSearchParams({page: '1'});
 
-    const [searchMovie, setSearchMovie] = useState('');
-
     useEffect(() => {
-        movieService.getAll(query.get('page')).then(({data}) => {
-            setMovies(data.results)
-            setPrev(data.prev)
-            setNext(data.next)
-        })
+        dispatch(movieAction.getAll({page: query.get('page')}))
     }, [query]);
-
 
     const prevPage = () => {
         setQuery(value => ({page: value.get('page') - 1}))
-        setPrev(prev - 1)
-        setNext(prev + 1)
     }
     const nextPage = () => {
         setQuery(value => ({page: +value.get('page') + 1}))
-        setPrev(prev - 1)
-        setNext(prev + 1)
     };
 
-    useEffect(() => {
-        movieService.searchMovie().then(({data}) => {
-            console.log(data.results)
-        })
-    }, [])
+    const [searchKey, setSearchKey] = useState('');
 
-    const dispatch = useDispatch();
+    useEffect(()=>{
+       movieService.searchMovie().then(({data})=>setSearchKey(data));
 
-    const submit = (e) => {
+    },[])
+
+
+    const search = (e) => {
         e.preventDefault();
-        useEffect(() => {
-            movieService.searchMovie().then(({data}) => {
-                setMovies(data.results)
-            })
-        }, [])
-    }
-
-    const change = (e) => {
-        setSearchMovie(e.target.value)
+        
     }
 
     return (
         <div>
-            <form onSubmit={submit}>
-                <input
-                    className=""
-                    type="search"
-                    placeholder={'Search movie'}
-                    value={searchMovie}
-                    onChange={change}
-                />
-                <button>Search</button>
-            </form>
-
-            <div className={css.movie_list}>
-                {movies?.map(movie => <MoviesList key={movie.id} movie={movie}/>)}
+            <div className={'container'}>
+                <form onSubmit={search} className={'form'}>
+                    <input
+                        className={'input'}
+                        type="text"
+                        placeholder={'Search movie'}
+                        value={searchKey}
+                        onChange={(event) => setSearchKey(event.target.value)}
+                    />
+                    <button type={'submit'}>Search</button>
+                </form>
             </div>
-            <button disabled={+prev === 1} onClick={prevPage}>prevPage</button>
-            <button disabled={+next === 500} onClick={nextPage}>nextPage</button>
+
+            <div className={'container'}>
+                {movies.map(movie => <MoviesList key={movie.id} movie={movie}/>)}
+            </div>
+            <button disabled={query.get('page') === '1'} onClick={prevPage}>prevPage</button>
+            <button disabled={query.get('page') === '500'} onClick={nextPage}>nextPage</button>
         </div>
     );
 };
