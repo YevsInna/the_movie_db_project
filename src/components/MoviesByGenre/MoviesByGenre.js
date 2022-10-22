@@ -28,8 +28,8 @@ const MoviesByGenre = () => {
     };
     return (
 
-        <div className={'container'}>
-            <div className={'movies-container'}>
+        <div className={'container-movies-byGenre'}>
+            <div className={'movies-byGenre'}>
                 {moviesByGenre.map(movie => <MoviesListByGenre key={movie.id} movie={movie}/>)}
             </div>
             <div className={'button-container'}>

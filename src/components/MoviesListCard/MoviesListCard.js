@@ -2,16 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 import './style.css';
-import {useDispatch, useSelector} from "react-redux";
-import {genreService} from "../../services";
-import {genreAction} from "../../redux";
 
 const MoviesListCard = () => {
 
     const {id} = useParams();
     const {state} = useLocation();
     const [movie, setMovie] = useState({});
-
 
     useEffect(() => {
         if (state) {
@@ -24,14 +20,6 @@ const MoviesListCard = () => {
     const back = () => {
         navigate(-1)
     };
-
-    // const {genres} = useSelector(state=>state.genres);
-    // const dispatch = useDispatch();
-    // useEffect(()=>{
-    //     genreService.getAllGenres().then(({data})=>{
-    //         dispatch(genreAction.getAllGenres(data.genres))
-    //     })
-    // },[]);
 
     return (
         <div>

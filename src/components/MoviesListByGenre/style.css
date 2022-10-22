@@ -1,4 +1,4 @@
-.movie-card {
+.movie-byGenre-card {
     display: flex;
     margin: 1rem;
     text-align: center;
@@ -7,7 +7,7 @@
     border-radius: 10px;
 }
 
-.movie-card img {
+.movie-byGenre-card img {
     border-radius: 10px 0 0 10px;
     width: 100%;
 }
@@ -15,7 +15,6 @@
 .movie-genre-overview {
     text-align: center;
     padding: 12px;
-
 }
 
 .movie-genre-overview p {

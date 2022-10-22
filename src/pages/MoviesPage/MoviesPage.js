@@ -27,15 +27,15 @@ const MoviesPage = () => {
 
     const [searchKey, setSearchKey] = useState('');
 
-    useEffect(()=>{
-       movieService.searchMovie().then(({data})=>setSearchKey(data));
+    useEffect(() => {
+        movieService.searchMovie().then(({data}) => setSearchKey(data));
 
-    },[])
+    }, [])
 
 
     const search = (e) => {
         e.preventDefault();
-        
+
     }
 
     return (

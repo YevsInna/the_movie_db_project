@@ -7,7 +7,7 @@ const rootReducers = combineReducers({
     genres: genresReducer
 });
 
-const setupStore= ()=> configureStore({
+const setupStore = () => configureStore({
     reducer: rootReducers
 
 });
