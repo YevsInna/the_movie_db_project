@@ -37,12 +37,11 @@ const MoviesListCard = () => {
         <div>
             {
                 movie &&
-                <div className={'movie-card'}>
-                    <h5>{movie.title}</h5>
-
-                    <div className={'movie-overview'}>
-                        <img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt={movie.title}/>
-                        <div className={'overview'}>
+                <div className={'movie-single-card'}>
+                    <img src={`https://image.tmdb.org/t/p/w400${movie.poster_path}`} alt={movie.title}/>
+                    <div className={'single-movie-overview'}>
+                        <h1>{movie.title}</h1>
+                        <div className={'movie-overview'}>
                             <div>
                                 <p>{movie.overview}</p>
                                 <p>Release date: {movie.release_date}</p>

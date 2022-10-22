@@ -9,7 +9,7 @@ const MoviesList = ({movie}) => {
     return (
         <div className="card">
             <img src={`${baseImageURL}/w300/${poster_path}`} alt={title}/>
-            <div>
+            <div className={'card-info'}>
                 <h5 className="title">{title}</h5>
 
                 <div> vote average - {vote_average}</div>

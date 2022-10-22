@@ -40,7 +40,7 @@ const MoviesPage = () => {
 
     return (
         <div>
-            <div className={'container'}>
+            <div className={'page-container'}>
                 <form onSubmit={search} className={'form'}>
                     <input
                         className={'input'}
@@ -53,11 +53,13 @@ const MoviesPage = () => {
                 </form>
             </div>
 
-            <div className={'container'}>
+            <div className={'page-container'}>
                 {movies.map(movie => <MoviesList key={movie.id} movie={movie}/>)}
             </div>
-            <button disabled={query.get('page') === '1'} onClick={prevPage}>prevPage</button>
-            <button disabled={query.get('page') === '500'} onClick={nextPage}>nextPage</button>
+            <div className={'movie-button-container page-container'}>
+                <button disabled={query.get('page') === '1'} onClick={prevPage}>prevPage</button>
+                <button disabled={query.get('page') === '500'} onClick={nextPage}>nextPage</button>
+            </div>
         </div>
     );
 };

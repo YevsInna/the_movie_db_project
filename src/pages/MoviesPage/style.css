@@ -7,7 +7,7 @@ dark {
     color: #dffaf1;
 }
 
-.container {
+.page-container {
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
@@ -28,11 +28,37 @@ dark {
     margin-bottom: 20px;
     display: flex;
 }
-.form button{
+
+.form button {
     border: none;
-    border-radius:5px;
+    border-radius: 5px;
     background-color: #6b7d73;
     color: #d3f1e1;
     padding: 0.5rem 1rem;
     font-size: 14px;
+}
+
+.movie-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.movie-button-container button {
+    cursor: pointer;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #6b7d73;
+    color: #d3f1e1;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    width: 150px;
+}
+
+.movie-button-container button:disabled,
+button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
 }
