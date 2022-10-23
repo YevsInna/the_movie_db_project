@@ -11,7 +11,7 @@ const MoviesPage = () => {
 
     const dispatch = useDispatch();
     const {movies} = useSelector(state => state.movies);
-    // const {searchMovies} = useSelector(state => state.movies);
+    const {searchMovies} = useSelector(state => state.movies);
     const [query, setQuery] = useSearchParams({page: '1'});
 
     useEffect(() => {
@@ -25,29 +25,27 @@ const MoviesPage = () => {
         setQuery(value => ({page: +value.get('page') + 1}))
     };
 
-    const [searchKey, setSearchKey] = useState('');
+    // const [searchKey, setSearchKey] = useState('');
 
     useEffect(() => {
-        movieService.searchMovie().then(({data}) => setSearchKey(data));
+        dispatch(movieAction.searchMovie(searchMovies))
+    }, [searchMovies])
 
-    }, [])
-
-
-    const search = (e) => {
-        e.preventDefault();
-
+    const search = (value) => {
+        dispatch(movieAction.searchMovie(value))
     }
+
 
     return (
         <div>
             <div className={'page-container'}>
-                <form onSubmit={search} className={'form'}>
+                <form>
                     <input
                         className={'input'}
                         type="text"
                         placeholder={'Search movie'}
-                        value={searchKey}
-                        onChange={(event) => setSearchKey(event.target.value)}
+                        value={searchMovies}
+                        onChange={(data) => search(data.target.value)}
                     />
                     <button type={'submit'}>Search</button>
                 </form>
