@@ -3,7 +3,8 @@ import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 
 import {movieAction} from "../../redux";
-import {MoviesList} from "../MoviesList/MoviesList";
+import {SearchedMovie} from "../SearchedMovie/SearchedMovie";
+import './style.css';
 
 const SearchMovieForm = () => {
 
@@ -15,25 +16,26 @@ const SearchMovieForm = () => {
 
     const search = ({searchKey}) => {
         dispatch(movieAction.searchMovie({searchKey}))
+        reset()
     };
 
     return (
         <div>
 
-            <div>
+            <div className={'form'}>
                 <form onSubmit={handleSubmit(search)}>
                     <input
                         type="text"
                         placeholder={'Search movie'}
                         {...register("searchKey")}
                     />
-                    <button onClick={()=>reset()}>Search</button>
+                    <button>Search</button>
                 </form>
             </div>
 
-            <div>
+            <div className={'search-page-container'}>
                 {
-                    searchMovies.map(movie => <MoviesList key={movie.id} movie={movie}/>)
+                    searchMovies.map(searchedMovie => <SearchedMovie key={searchedMovie.id} searchedMovie={searchedMovie}/>)
                 }
             </div>
 

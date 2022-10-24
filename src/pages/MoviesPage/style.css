@@ -16,27 +16,6 @@ dark {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     font-family: sans-serif;
 }
-
-.input {
-    border-radius: 5px;
-    border: none;
-    padding: 4px;
-}
-
-.form {
-    margin-bottom: 20px;
-    display: flex;
-}
-
-.form button {
-    border: none;
-    border-radius: 5px;
-    background-color: #6b7d73;
-    color: #d3f1e1;
-    padding: 0.5rem 1rem;
-    font-size: 14px;
-}
-
 .movie-button-container {
     display: flex;
     justify-content: center;

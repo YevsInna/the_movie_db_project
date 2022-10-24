@@ -5,4 +5,5 @@ export * from './MoviesList/MoviesList';
 export * from './MoviesListByGenre/MoviesListByGenre';
 export * from './MoviesListCard/MoviesListCard';
 export * from './SearchMovieForm/SearchMovieForm';
+export * from './SearchedMovie/SearchedMovie';
 

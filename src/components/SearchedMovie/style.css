@@ -1,19 +1,21 @@
-.card {
+.search-card{
+    width: 239px;
     text-align: center;
     background: #e5faf3;
     box-shadow: rgba(118, 124, 130, 0.2) 0px 8px 24px;
     border-radius: 10px;
 }
-.title {
+.search-card img{
+    height: 359px;
+    border-radius: 10px 10px 0 0;
+    width: 100%;
+}
+.search-title{
     height: 70px;
     margin: 16px 8px 0 8px;
     font-size: 20px;
 }
-.card img {
-    border-radius: 10px 10px 0 0;
-    width: 100%;
-}
-.card button {
+.search-card button{
     border: none;
     border-radius: 10px;
     background-color: #6b7d73;
@@ -23,4 +25,3 @@
     margin: 24px;
     cursor: pointer;
 }
-
