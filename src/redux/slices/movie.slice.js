@@ -6,9 +6,11 @@ import {movieService} from "../../services";
 const initialState = {
         movies: [],
         movie: null,
-        searchMovie: '',
+        searchMovies: [],
         currentPage: 1,
-        pages: 0
+        pages: 0,
+        loading: false,
+        errors: null
     }
 ;
 const getAll = createAsyncThunk(
@@ -25,9 +27,9 @@ const getAll = createAsyncThunk(
 
 const searchMovie = createAsyncThunk(
     'movieSlice/searchMovie',
-    async ({currentPage, searchMovie}, {rejectWithValue}) => {
+    async ({searchKey}, {rejectWithValue}) => {
         try {
-            const {data} = await movieService.searchMovie(currentPage, searchMovie);
+            const {data} = await movieService.searchMovie(searchKey);
             return data.results
         } catch (e) {
             return rejectWithValue(e.response.data)
@@ -38,29 +40,38 @@ const searchMovie = createAsyncThunk(
 const movieSlice = createSlice({
     name: 'movieSlice',
     initialState,
-    reducers: {
-        madeSearchMovie: (state, action) => {
-            state.searchMovie = action.payload
-        },
-        setCurrentPage: (state, action) => {
-            state.currentPage = action.payload
-        }
-    },
+    reducers: {},
     extraReducers: builder =>
         builder
             .addCase(getAll.fulfilled, (state, action) => {
-                state.movies = action.payload
-
+                state.movies = action.payload;
+                state.errors = null;
+                state.loading = false;
+            })
+            .addCase(getAll.pending, (state, action) => {
+                state.loading = true;
+            })
+            .addCase(getAll.rejected, (state, action) => {
+                state.errors = action.payload;
             })
             .addCase(searchMovie.fulfilled, (state, action) => {
-                state.movies = action.payload
-                state.pages = action.payload.total_pages
+                state.searchMovies = action.payload
+                state.loading = false;
+                state.errors = null;
+            })
+            .addCase(searchMovie.pending, (state, action) => {
+                state.loading = true;
+                state.errors = null;
+            })
+            .addCase(searchMovie.rejected, (state, action) => {
+                state.errors = action.payload
+                state.loading = false
             })
 
 });
 
-const {reducer: movieReducer, actions: {madeSearchMovie, setCurrentPage}} = movieSlice;
+const {reducer: movieReducer, actions: {}} = movieSlice;
 
-const movieAction = {getAll, searchMovie, madeSearchMovie, setCurrentPage};
+const movieAction = {getAll, searchMovie};
 
 export {movieAction, movieReducer};

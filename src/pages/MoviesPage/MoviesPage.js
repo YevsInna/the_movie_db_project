@@ -1,17 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 
 import {movieAction} from "../../redux";
-import {MoviesList} from "../../components";
+import {MoviesList, SearchMovieForm} from "../../components";
 import './style.css'
-import {movieService} from "../../services";
+
 
 const MoviesPage = () => {
 
     const dispatch = useDispatch();
     const {movies} = useSelector(state => state.movies);
-    const {searchMovies} = useSelector(state => state.movies);
+
     const [query, setQuery] = useSearchParams({page: '1'});
 
     useEffect(() => {
@@ -25,30 +25,10 @@ const MoviesPage = () => {
         setQuery(value => ({page: +value.get('page') + 1}))
     };
 
-    // const [searchKey, setSearchKey] = useState('');
-
-    useEffect(() => {
-        dispatch(movieAction.searchMovie(searchMovies))
-    }, [searchMovies])
-
-    const search = (value) => {
-        dispatch(movieAction.searchMovie(value))
-    }
-
-
     return (
         <div>
             <div className={'page-container'}>
-                <form>
-                    <input
-                        className={'input'}
-                        type="text"
-                        placeholder={'Search movie'}
-                        value={searchMovies}
-                        onChange={(data) => search(data.target.value)}
-                    />
-                    <button type={'submit'}>Search</button>
-                </form>
+                <SearchMovieForm/>
             </div>
 
             <div className={'page-container'}>
@@ -60,6 +40,7 @@ const MoviesPage = () => {
             </div>
         </div>
     );
-};
+
+}
 
 export {MoviesPage};
